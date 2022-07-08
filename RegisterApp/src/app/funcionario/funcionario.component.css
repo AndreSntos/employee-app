@@ -1,0 +1,11 @@
+.btn-danger{
+    background-color: red;
+}
+
+.form-group{
+    padding: 10px;
+}
+
+table, .search-btn, .mt-20{
+    margin-top: 20px;
+}

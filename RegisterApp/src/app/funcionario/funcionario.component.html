@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 mt-20">
+      <div class="card">
+        <div class="card-header">
+          <h3><b>Funcionario</b></h3>
+        </div>
+        <div class="card-body">
+          <form #form="ngForm" autocomplete="off" (submit)="OnSubmit(form)">
+            <input
+              type="hidden"
+              name="Id"
+              #Id="ngModel"
+              [(ngModel)]="funcionario_service.formData.Id"
+            />
+            <div class="form-group">
+              <input
+                type="text"
+                name="Name"
+                #Name="ngModel"
+                [(ngModel)]="funcionario_service.formData.Nome"
+                placeholder="Name"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                name="Age"
+                #Age="ngModel"
+                [(ngModel)]="funcionario_service.formData.Admissao"
+                placeholder="Admissao"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                name="Adress"
+                #Adress="ngModel"
+                [(ngModel)]="funcionario_service.formData.Salario"
+                placeholder="Salario"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <button
+                type="submit"
+                type="submit"
+                [disabled]="form.invalid"
+                class="btn btn-primary"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <input
+        class="form-control search-btn"
+        type="search"
+        name="search"
+        [(ngModel)]="GetFuncionarioById"
+        placeholder="Buscar funcionário"
+      />
+      <table class="table table-bordered">
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Admissão</th>
+          <th>Salario</th>
+          <th>Ações</th>
+        </tr>
+        <tr *ngFor="let user of usersList | filter: GetFuncionarioById">
+          <td (click)="ToForm(user)">{{ user.Id }}</td>
+          <td (click)="ToForm(user)">{{ user.Nome }}</td>
+          <td (click)="ToForm(user)">{{ user.Admissao }}</td>
+          <td (click)="ToForm(user)">R$ {{ user.Salario }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="DeleteFuncionario(user.Id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
